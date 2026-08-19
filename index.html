@@ -1,126 +1,254 @@
-<!doctype html>
-<html lang="ar">
+<!DOCTYPE html>
+<html lang="fr" dir="ltr">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>For Malak ❤️</title>
-<style>
-*{box-sizing:border-box} body{margin:0;font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:radial-gradient(circle at top,#ffd9e6,#fff5f8 48%,#f8d7e3);color:#5a1630;min-height:100vh;overflow-x:hidden}
-.screen{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:24px;text-align:center}
-.card{width:min(430px,100%);padding:30px 22px;border-radius:30px;background:#ffffffcc;backdrop-filter:blur(12px);box-shadow:0 20px 60px #8c345233}
-h1{margin:8px 0 12px;font-size:30px}.sub{opacity:.8}.heart-lock{font-size:95px;cursor:pointer;filter:drop-shadow(0 10px 15px #c42b5b55);animation:pulse 1.5s infinite}
-@keyframes pulse{50%{transform:scale(1.07)}} input{width:180px;padding:14px;border:2px solid #e9a7bd;border-radius:18px;text-align:center;font-size:22px;letter-spacing:7px;outline:none}
-button{border:0;border-radius:999px;padding:15px 25px;font-size:18px;font-weight:700;cursor:pointer;box-shadow:0 10px 24px #8c345222;transition:.25s}
-.yes{background:#e83e72;color:white}.no{background:#fff;color:#9a3153;border:2px solid #f0b2c6}
-.hidden{display:none!important}.question{position:relative;min-height:100vh;overflow:hidden}
-.choice{position:absolute;top:55%;transform:translateY(-50%);transition:.3s}
-#yes{left:58%;transform:translate(-50%,-50%) scale(1)}
-#no{left:28%;transform:translate(-50%,-50%) scale(1)}
-.gifts{display:grid;grid-template-columns:1fr;gap:16px;margin-top:22px}
-.gift{background:#fff;border:2px solid #f2bfd0;padding:22px;border-radius:24px;cursor:pointer}
-.gallery img{width:100%;max-height:58vh;object-fit:contain;border-radius:20px;margin:8px 0;box-shadow:0 10px 30px #7b244122}
-.back{background:#fff;color:#8b294c;margin-top:15px}
-.letter{font-size:20px;line-height:2;background:#fff5f8;border-radius:22px;padding:22px;white-space:pre-wrap}
-.hearts{position:fixed;inset:0;pointer-events:none;overflow:hidden}.float{position:absolute;animation:fall 4s linear forwards;font-size:24px}
-@keyframes fall{to{transform:translateY(110vh) rotate(360deg);opacity:0}}
-.fullYes{position:fixed!important;inset:0!important;left:0!important;top:0!important;width:100vw;height:100vh;border-radius:0;font-size:clamp(34px,10vw,80px);transform:none!important;z-index:50}
-.small{font-size:14px;opacity:.7}
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pour Malak ❤️</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      background-color: #0d0d11;
+      color: #ffffff;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      overflow-x: hidden;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+      padding: 20px 0;
+    }
+
+    /* خلفية الحروف والصور المبعثرة */
+    .bg-container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 1;
+      overflow: hidden;
+    }
+
+    .floating-item {
+      position: absolute;
+      opacity: 0.35;
+      animation: floatAnim 12s infinite ease-in-out;
+      user-select: none;
+    }
+
+    .floating-letter {
+      font-size: clamp(2rem, 5vw, 4rem);
+      font-weight: 900;
+      color: #ff758f;
+      text-shadow: 0 0 12px rgba(255, 117, 143, 0.5);
+    }
+
+    .floating-img {
+      width: 80px;
+      height: 80px;
+      object-fit: cover;
+      border-radius: 12px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+      border: 1px solid rgba(255,255,255,0.2);
+    }
+
+    @keyframes floatAnim {
+      0% {
+        transform: translateY(105vh) rotate(0deg) scale(0.8);
+        opacity: 0;
+      }
+      20% {
+        opacity: 0.45;
+      }
+      80% {
+        opacity: 0.45;
+      }
+      100% {
+        transform: translateY(-15vh) rotate(360deg) scale(1.1);
+        opacity: 0;
+      }
+    }
+
+    /* المحتوى الرئيسي */
+    .main-card {
+      position: relative;
+      z-index: 10;
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-radius: 24px;
+      padding: 30px;
+      max-width: 520px;
+      width: 90%;
+      text-align: center;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
+      margin: 20px 0;
+    }
+
+    .player-container {
+      margin-bottom: 25px;
+    }
+
+    .record-disc {
+      width: 110px;
+      height: 110px;
+      border-radius: 50%;
+      background: radial-gradient(circle, #333 15%, #111 16%, #222 30%, #000 70%);
+      margin: 0 auto 15px auto;
+      border: 3px solid #ff4d6d;
+      box-shadow: 0 0 20px rgba(255, 77, 109, 0.4);
+      animation: spin 6s linear infinite;
+      animation-play-state: paused;
+    }
+
+    .record-disc.playing {
+      animation-play-state: running;
+    }
+
+    @keyframes spin {
+      100% { transform: rotate(360deg); }
+    }
+
+    .play-btn {
+      background: linear-gradient(135deg, #ff4d6d, #c77dff);
+      border: none;
+      color: white;
+      padding: 12px 28px;
+      font-size: 1rem;
+      border-radius: 50px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .play-btn:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 15px rgba(255, 77, 109, 0.6);
+    }
+
+    .message-box {
+      background: rgba(0, 0, 0, 0.35);
+      padding: 25px;
+      border-radius: 16px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      line-height: 1.8;
+      font-size: 1.05rem;
+      color: #f1f1f1;
+      text-align: left;
+      white-space: pre-line;
+    }
+
+    .signature {
+      margin-top: 15px;
+      font-weight: bold;
+      color: #ff758f;
+      text-align: center;
+      font-size: 1.2rem;
+    }
+  </style>
 </head>
 <body>
-<div id="hearts" class="hearts"></div>
 
-<section id="lock" class="screen">
-  <div class="card">
-    <div class="heart-lock">🔒❤️</div>
-    <h1>قفل خاص لِـ Malak</h1>
-    <p class="sub">دخلي الرمز عشان تفتحي المفاجأة 🌷</p>
-    <input id="pin" inputmode="numeric" maxlength="4" placeholder="••••" aria-label="الرمز">
-    <p id="err" class="small"></p>
-  </div>
-</section>
+  <div class="bg-container" id="bgContainer"></div>
 
-<section id="question" class="question hidden">
-  <div class="screen">
-    <div class="card">
-      <div style="font-size:70px">🥺❤️</div>
-      <h1>عندي سؤال لك يا Malak...</h1>
-      <h2>تحبيني؟ 🌷</h2>
-      <p class="sub">فكري مزيان قبل ما تختاري 😭❤️</p>
+  <div class="main-card">
+    <div class="player-container">
+      <div class="record-disc" id="disc"></div>
+      <audio id="audioPlayer" src="song.m4a"></audio>
+      <button class="play-btn" onclick="togglePlay()">تشغيل الموسيقى 🎵</button>
     </div>
-    <button id="yes" class="choice yes">YES ❤️</button>
-    <button id="no" class="choice no">NO 💔</button>
+
+    <div class="message-box">
+      Rsalti lik
+
+      Malak,
+
+      Sra7a ma3reftch mnin nbda, walakin bghit ghir ngolik wa7d l7aja…
+
+      7ta ila kenti b3ida 3lia, rah dima kayn chi joz2 مني m3ak. Kanl9a rassi mrat kanfker fik bla sabab, kanchof chi 7aja w kan9ol “hadi ghadi t3jeb Malak”, wla kansme3 chi 8nya w katji f bali nti direct.
+
+      Drt lik had sando9 7it bghit n3tik chi 7aja mkhtalfa, chi 7aja kol mara tft7iha t7essi بيا 9rib mnk chwiya.
+
+      Tsawra dyalna katfekerni f l2w9at li kontmna n3icho menhom bzaf, w tsawer dyalk… sra7a ghir kanchofk kanfer7.
+
+      W l8nya khlitha hna 7it bghit kol mara tsme3iha ttfekrini.
+
+      Walakin ahem 7aja f had sando9 kamel hiya nti.
+
+      Kan3ref bli lmsafa s3iba, w kan3ref bli machi dima n9der nkon 7dak f lwa9t li bghiti, walakin bghitk t3rfi bli lbo3d 3omro ma n9es mn lblassa dyalk 3ndi.
+
+      Bla ma n7ess, kol nhar kaydouz kan7ess bli twa7chtek kter.
+
+      Knbghik bzaf ya Malak, w ntmna had lhedya sghira tfer7k 7ta ghir chwiya mn lfer7a li katdkhli l7yati.
+
+      <div class="signature">
+        O + M ❤️<br>
+        Dima dyalk
+      </div>
+    </div>
   </div>
-</section>
 
-<section id="gifts" class="screen hidden">
- <div class="card">
-   <div style="font-size:65px">🎁❤️</div>
-   <h1>هدايا لكِ يا Malak</h1>
-   <p class="sub">كل وحدة فيها شيء من قلبي 🌷</p>
-   <div class="gifts">
-    <button class="gift" onclick="show('photos')">📸 الهدية الأولى<br><small>صورنا</small></button>
-    <button class="gift" onclick="show('song')">🎵 الهدية الثانية<br><small>Bali Maak — Stormy</small></button>
-    <button class="gift" onclick="show('letter')">💌 الهدية الثالثة<br><small>رسالتي لكِ</small></button>
-   </div>
- </div>
-</section>
+  <script>
+    const audio = document.getElementById('audioPlayer');
+    const disc = document.getElementById('disc');
+    const playBtn = document.querySelector('.play-btn');
 
-<section id="photos" class="screen hidden">
- <div class="card gallery">
-  <h1>📸 صورنا</h1>
-  <img src="photo1.jpeg"><img src="photo2.jpeg"><img src="photo3.jpeg"><img src="photo4.jpeg">
-  <button class="back" onclick="show('gifts')">رجوع ❤️</button>
- </div>
-</section>
+    function togglePlay() {
+      if (audio.paused) {
+        audio.play();
+        disc.classList.add('playing');
+        playBtn.innerText = 'إيقاف مؤقت ⏸️';
+      } else {
+        audio.pause();
+        disc.classList.remove('playing');
+        playBtn.innerText = 'تشغيل الموسيقى 🎵';
+      }
+    }
 
-<section id="song" class="screen hidden">
- <div class="card">
-  <div style="font-size:80px">🎵❤️</div>
-  <h1>Bali Maak</h1><p>Stormy</p>
-  <p class="sub">أضف ملف الأغنية باسم <b>bali-maak.mp3</b> داخل مجلد الموقع لتعمل هنا.</p>
-  <audio id="audio" controls style="width:100%;margin-top:15px" src="bali-maak.mp3"></audio>
-  <button class="back" onclick="show('gifts')">رجوع ❤️</button>
- </div>
-</section>
+    const letters = ['O', 'M'];
+    
+    // إعداد أسماء وصيغ الصور الجديدة
+    const images = [
+      'img1.jpeg',
+      'img2.jpeg',
+      'img3.jpeg',
+      'img4.jpeg',
+      'img5.png',
+      'img6.png'
+    ];
+    
+    const bgContainer = document.getElementById('bgContainer');
 
-<section id="letter" class="screen hidden">
- <div class="card">
-  <div style="font-size:70px">💌</div>
-  <h1>رسالتي لكِ</h1>
-  <div class="letter">Bghit ngulk a Malak ana kanbghek bzef ❤️
-o bghit ngulk inchaelah Rebi aytwl binatna
-o 3mrna nb3do 3la b3dyatna ❤️
-Babatk kaybgheek ❤️🌷</div>
-  <button class="back" onclick="show('gifts')">رجوع ❤️</button>
- </div>
-</section>
+    function createFloatingElements() {
+      for (let i = 0; i < 14; i++) {
+        const letterEl = document.createElement('div');
+        letterEl.className = 'floating-item floating-letter';
+        letterEl.innerText = letters[Math.floor(Math.random() * letters.length)];
+        letterEl.style.left = `${Math.random() * 95}%`;
+        letterEl.style.animationDuration = `${8 + Math.random() * 10}s`;
+        letterEl.style.animationDelay = `${Math.random() * 5}s`;
+        bgContainer.appendChild(letterEl);
+      }
 
-<script>
-const $=id=>document.getElementById(id);
-function show(id){
- document.querySelectorAll('section').forEach(s=>s.classList.add('hidden'));
- $(id).classList.remove('hidden');
- if(id==='gifts') burst();
-}
-$('pin').addEventListener('input',e=>{
- if(e.target.value==='1614'){ show('question'); burst(); }
-});
-let scale=1, noScale=1, presses=0;
-$('no').addEventListener('click',()=>{
- presses++; scale*=1.35; noScale*=.72;
- $('yes').style.transform=`translate(-50%,-50%) scale(${scale})`;
- $('no').style.transform=`translate(-50%,-50%) scale(${noScale})`;
- if(presses>=5){$('yes').classList.add('fullYes'); $('yes').textContent='YES ❤️';}
-});
-$('yes').addEventListener('click',()=>{show('gifts');burst();});
-function burst(){
- for(let i=0;i<30;i++){
-  const x=document.createElement('div');x.className='float';x.textContent=['❤️','💗','🌷','💕'][Math.floor(Math.random()*4)];
-  x.style.left=Math.random()*100+'vw';x.style.top='-30px';x.style.animationDelay=(Math.random()*1.5)+'s';
-  $('hearts').appendChild(x);setTimeout(()=>x.remove(),5500);
- }
-}
-</script>
+      images.forEach((imgSrc) => {
+        const imgEl = document.createElement('img');
+        imgEl.src = imgSrc;
+        imgEl.className = 'floating-item floating-img';
+        imgEl.style.left = `${Math.random() * 90}%`;
+        imgEl.style.animationDuration = `${10 + Math.random() * 8}s`;
+        imgEl.style.animationDelay = `${Math.random() * 6}s`;
+        bgContainer.appendChild(imgEl);
+      });
+    }
+
+    createFloatingElements();
+  </script>
 </body>
 </html>
