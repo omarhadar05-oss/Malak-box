@@ -77,17 +77,17 @@
       z-index: 20;
       text-align: center;
       cursor: pointer;
-      transition: transform 0.3s ease, opacity 0.5s ease;
+      transition: transform 0.4s ease, opacity 0.4s ease;
     }
 
     .gift-box-container:hover {
-      transform: scale(1.05);
+      transform: scale(1.1);
     }
 
     .box-svg {
-      width: 140px;
-      height: 140px;
-      filter: drop-shadow(0 10px 20px rgba(255, 77, 109, 0.5));
+      width: 150px;
+      height: 150px;
+      filter: drop-shadow(0 10px 20px rgba(255, 77, 109, 0.6));
       animation: pulseBox 2s infinite ease-in-out;
     }
 
@@ -104,7 +104,7 @@
       letter-spacing: 1px;
     }
 
-    /* المحتوى الرئيسي (البطاقة) - مخفي في الأول */
+    /* المحتوى الرئيسي (البطاقة المربعة) */
     .main-card {
       position: relative;
       z-index: 10;
@@ -112,38 +112,66 @@
       backdrop-filter: blur(16px);
       -webkit-backdrop-filter: blur(16px);
       border: 1px solid rgba(255, 255, 255, 0.15);
-      border-radius: 24px;
+      border-radius: 28px;
       padding: 30px;
-      max-width: 520px;
-      width: 100%;
+      
+      /* تصميم بطاقة مربعة تماماً */
+      width: min(90vw, 520px);
+      height: min(90vw, 520px);
+      
+      display: none;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: center;
       text-align: center;
       box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
       opacity: 0;
-      transform: scale(0.7) translateY(50px);
-      pointer-events: none;
+      transform: scale(0.6) translateY(50px);
       transition: all 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-      display: none;
+      overflow: hidden;
     }
 
     .main-card.show {
-      display: block;
+      display: flex;
       opacity: 1;
       transform: scale(1) translateY(0);
-      pointer-events: auto;
+    }
+
+    /* ملصقات باتمان وهيلو كيتي */
+    .sticker {
+      position: absolute;
+      width: 60px;
+      height: 60px;
+      z-index: 15;
+      pointer-events: none;
+      filter: drop-shadow(0 4px 8px rgba(0,0,0,0.4));
+    }
+
+    .sticker-batman {
+      top: 12px;
+      left: 12px;
+      transform: rotate(-12deg);
+    }
+
+    .sticker-kitty {
+      bottom: 12px;
+      right: 12px;
+      transform: rotate(10deg);
     }
 
     .player-container {
-      margin-bottom: 25px;
+      margin-top: 5px;
+      margin-bottom: 10px;
     }
 
     .record-disc {
-      width: 110px;
-      height: 110px;
+      width: 80px;
+      height: 80px;
       border-radius: 50%;
       background: radial-gradient(circle, #333 15%, #111 16%, #222 30%, #000 70%);
-      margin: 0 auto 15px auto;
-      border: 3px solid #ff4d6d;
-      box-shadow: 0 0 20px rgba(255, 77, 109, 0.4);
+      margin: 0 auto 10px auto;
+      border: 2px solid #ff4d6d;
+      box-shadow: 0 0 15px rgba(255, 77, 109, 0.4);
       animation: spin 6s linear infinite;
       animation-play-state: paused;
     }
@@ -160,8 +188,8 @@
       background: linear-gradient(135deg, #ff4d6d, #c77dff);
       border: none;
       color: white;
-      padding: 12px 28px;
-      font-size: 1rem;
+      padding: 8px 20px;
+      font-size: 0.9rem;
       border-radius: 50px;
       cursor: pointer;
       font-weight: bold;
@@ -175,28 +203,41 @@
 
     .message-box {
       background: rgba(0, 0, 0, 0.35);
-      padding: 25px;
+      padding: 15px;
       border-radius: 16px;
       border: 1px solid rgba(255, 255, 255, 0.08);
-      line-height: 1.8;
-      font-size: 1.05rem;
+      line-height: 1.6;
+      font-size: 0.92rem;
       color: #f1f1f1;
       text-align: left;
       white-space: pre-line;
+      flex-grow: 1;
+      overflow-y: auto;
+      width: 100%;
+      margin-bottom: 5px;
+    }
+
+    /* تخصيص شريط التمرير داخل الرسالة */
+    .message-box::-webkit-scrollbar {
+      width: 4px;
+    }
+    .message-box::-webkit-scrollbar-thumb {
+      background: #ff758f;
+      border-radius: 10px;
     }
 
     .signature {
-      margin-top: 15px;
+      margin-top: 10px;
       font-weight: bold;
       color: #ff758f;
       text-align: center;
-      font-size: 1.2rem;
+      font-size: 1.1rem;
     }
   </style>
 </head>
 <body>
 
-  <!-- الحروف والصور المبعثرة -->
+  <!-- خلفية العناصر الطافية -->
   <div class="bg-container" id="bgContainer"></div>
 
   <!-- الصندوق المغلق -->
@@ -211,8 +252,25 @@
     <div class="click-hint">Clique pour ouvrir ❤️</div>
   </div>
 
-  <!-- الكارت الرئيسي والرسالة -->
+  <!-- البطاقة المربعة -->
   <div class="main-card" id="mainCard">
+    <!-- ستيكر باتمان -->
+    <svg class="sticker sticker-batman" viewBox="0 0 100 100">
+      <path d="M50 25 C30 10, 15 30, 5 20 C10 40, 25 45, 30 65 C40 50, 45 70, 50 85 C55 70, 60 50, 70 65 C75 45, 90 40, 95 20 C85 30, 70 10, 50 25 Z" fill="#ffd700" stroke="#000" stroke-width="3"/>
+      <path d="M50 30 C35 18, 22 32, 12 25 C16 40, 28 44, 32 60 C40 48, 45 64, 50 75 C55 64, 60 48, 68 60 C72 44, 84 40, 88 25 C78 32, 65 18, 50 30 Z" fill="#111"/>
+    </svg>
+
+    <!-- ستيكر هيلو كيتي -->
+    <svg class="sticker sticker-kitty" viewBox="0 0 100 100">
+      <ellipse cx="50" cy="55" rx="35" ry="28" fill="#fff" stroke="#000" stroke-width="3"/>
+      <polygon points="20,35 30,15 42,30" fill="#fff" stroke="#000" stroke-width="3"/>
+      <polygon points="80,35 70,15 58,30" fill="#fff" stroke="#000" stroke-width="3"/>
+      <ellipse cx="38" cy="55" rx="3.5" ry="5" fill="#000"/>
+      <ellipse cx="62" cy="55" rx="3.5" ry="5" fill="#000"/>
+      <ellipse cx="50" cy="62" rx="4" ry="3" fill="#ffb703" stroke="#000" stroke-width="1"/>
+      <path d="M 68 25 C 65 15, 80 15, 78 25 C 85 22, 88 32, 78 32 C 85 38, 75 42, 68 32 Z" fill="#ff4d6d" stroke="#000" stroke-width="2"/>
+    </svg>
+
     <div class="player-container">
       <div class="record-disc" id="disc"></div>
       <audio id="audioPlayer" src="song.m4a"></audio>
@@ -256,10 +314,9 @@
     const giftBox = document.getElementById('giftBox');
     const mainCard = document.getElementById('mainCard');
 
-    // فتح الصندوق وتعديل الأنيميشن
     function openBox() {
       giftBox.style.opacity = '0';
-      giftBox.style.transform = 'scale(0.3)';
+      giftBox.style.transform = 'scale(0.2)';
       setTimeout(() => {
         giftBox.style.display = 'none';
         mainCard.classList.add('show');
