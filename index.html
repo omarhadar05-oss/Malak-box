@@ -20,7 +20,7 @@
       justify-content: center;
       align-items: center;
       position: relative;
-      padding: 20px 0;
+      padding: 20px;
     }
 
     /* خلفية الحروف والصور المبعثرة */
@@ -50,8 +50,8 @@
     }
 
     .floating-img {
-      width: 80px;
-      height: 80px;
+      width: 85px;
+      height: 85px;
       object-fit: cover;
       border-radius: 12px;
       box-shadow: 0 4px 15px rgba(0,0,0,0.5);
@@ -63,19 +63,48 @@
         transform: translateY(105vh) rotate(0deg) scale(0.8);
         opacity: 0;
       }
-      20% {
-        opacity: 0.45;
-      }
-      80% {
-        opacity: 0.45;
-      }
+      20% { opacity: 0.45; }
+      80% { opacity: 0.45; }
       100% {
         transform: translateY(-15vh) rotate(360deg) scale(1.1);
         opacity: 0;
       }
     }
 
-    /* المحتوى الرئيسي */
+    /* أنيميشن الصندوق المغلق */
+    .gift-box-container {
+      position: relative;
+      z-index: 20;
+      text-align: center;
+      cursor: pointer;
+      transition: transform 0.3s ease, opacity 0.5s ease;
+    }
+
+    .gift-box-container:hover {
+      transform: scale(1.05);
+    }
+
+    .box-svg {
+      width: 140px;
+      height: 140px;
+      filter: drop-shadow(0 10px 20px rgba(255, 77, 109, 0.5));
+      animation: pulseBox 2s infinite ease-in-out;
+    }
+
+    @keyframes pulseBox {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.08); }
+    }
+
+    .click-hint {
+      margin-top: 15px;
+      font-size: 1.1rem;
+      color: #ff758f;
+      font-weight: bold;
+      letter-spacing: 1px;
+    }
+
+    /* المحتوى الرئيسي (البطاقة) - مخفي في الأول */
     .main-card {
       position: relative;
       z-index: 10;
@@ -86,10 +115,21 @@
       border-radius: 24px;
       padding: 30px;
       max-width: 520px;
-      width: 90%;
+      width: 100%;
       text-align: center;
       box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
-      margin: 20px 0;
+      opacity: 0;
+      transform: scale(0.7) translateY(50px);
+      pointer-events: none;
+      transition: all 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      display: none;
+    }
+
+    .main-card.show {
+      display: block;
+      opacity: 1;
+      transform: scale(1) translateY(0);
+      pointer-events: auto;
     }
 
     .player-container {
@@ -156,13 +196,27 @@
 </head>
 <body>
 
+  <!-- الحروف والصور المبعثرة -->
   <div class="bg-container" id="bgContainer"></div>
 
-  <div class="main-card">
+  <!-- الصندوق المغلق -->
+  <div class="gift-box-container" id="giftBox" onclick="openBox()">
+    <svg class="box-svg" viewBox="0 0 64 64" fill="none">
+      <path d="M8 24H56V56H8V24Z" fill="#ff4d6d"/>
+      <path d="M4 16H60V24H4V16Z" fill="#ff758f"/>
+      <path d="M28 16H36V56H28V16Z" fill="#ffb3c1"/>
+      <path d="M32 16C28 8 16 8 20 16H32Z" fill="#ff758f"/>
+      <path d="M32 16C36 8 48 8 44 16H32Z" fill="#ff758f"/>
+    </svg>
+    <div class="click-hint">Clique pour ouvrir ❤️</div>
+  </div>
+
+  <!-- الكارت الرئيسي والرسالة -->
+  <div class="main-card" id="mainCard">
     <div class="player-container">
       <div class="record-disc" id="disc"></div>
       <audio id="audioPlayer" src="song.m4a"></audio>
-      <button class="play-btn" onclick="togglePlay()">تشغيل الموسيقى 🎵</button>
+      <button class="play-btn" onclick="togglePlay()">إيقاف مؤقت ⏸️</button>
     </div>
 
     <div class="message-box">
@@ -199,6 +253,20 @@
     const audio = document.getElementById('audioPlayer');
     const disc = document.getElementById('disc');
     const playBtn = document.querySelector('.play-btn');
+    const giftBox = document.getElementById('giftBox');
+    const mainCard = document.getElementById('mainCard');
+
+    // فتح الصندوق وتعديل الأنيميشن
+    function openBox() {
+      giftBox.style.opacity = '0';
+      giftBox.style.transform = 'scale(0.3)';
+      setTimeout(() => {
+        giftBox.style.display = 'none';
+        mainCard.classList.add('show');
+        audio.play().catch(() => {});
+        disc.classList.add('playing');
+      }, 400);
+    }
 
     function togglePlay() {
       if (audio.paused) {
@@ -213,8 +281,6 @@
     }
 
     const letters = ['O', 'M'];
-    
-    // إعداد أسماء وصيغ الصور الجديدة
     const images = [
       'img1.jpeg',
       'img2.jpeg',
