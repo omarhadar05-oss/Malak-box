@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="fr" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>A Little Apology - l7biba dbabak</title>
+<style>
+:root {
+  --site-primary: #f4a9c8;
+  --site-secondary: #e9d7ff;
+  --site-background: #fff3f8;
+  --site-on-primary: #54243a;
+  --site-on-secondary: #49345f;
+  --site-on-background: #633d50;
+  --site-font-body: "Trebuchet MS", "Arial", sans-serif;
+  --site-font-heading: "Trebuchet MS", "Arial", sans-serif;
+  --site-heading-scale: 1;
+  --site-spacing-scale: 1;
+  --site-radius-scale: 1;
+  --site-decoration-opacity: 1;
+  color-scheme: light dark;
+}
+* { box-sizing: border-box; }
+body { margin: 0; font-family: var(--site-font-body); background: var(--site-background); color: var(--site-on-background); }
+#app { min-height: 100vh; width: 100%; border-radius: 0; overflow: hidden; position: relative; background-color: light-dark(var(--site-background), #271b29); color: light-dark(var(--site-on-background), #ffe8f1); }
+.decor { position: absolute; inset: 0; pointer-events: none; opacity: var(--site-decoration-opacity); overflow: hidden; }
+.float { position: absolute; color: #e78bb2; opacity: .24; font-size: 25px; animation: drift 8s ease-in-out infinite; }
+.float:nth-child(1){top:8%;left:8%;}.float:nth-child(2){top:24%;right:8%;animation-delay:1s}.float:nth-child(3){top:61%;left:5%;animation-delay:2s}.float:nth-child(4){top:80%;right:10%;animation-delay:3s}.float:nth-child(5){top:43%;left:15%;animation-delay:1.5s}.float:nth-child(6){top:13%;right:24%;animation-delay:2.5s}
+@keyframes drift { 0%,100%{transform:translateY(0) rotate(-8deg)}50%{transform:translateY(-17px) rotate(9deg)} }
+main { position: relative; z-index: 1; width: min(100% - 30px, 760px); margin: auto; padding: 34px 0 60px; min-height: 100vh; display: flex; flex-direction: column; justify-content: center; }
+.topline { text-align:center; font-size: 13px; letter-spacing: 2px; color:#bd7194; margin-bottom: 15px; }
+.card { background: light-dark(rgba(255,255,255,.82), rgba(62,43,62,.94)); border: 1px solid light-dark(#f4c9da,#76516b); border-radius: calc(30px * var(--site-radius-scale)); padding: clamp(24px,5vw,46px); box-shadow: 0 18px 55px rgba(174,103,140,.14); text-align:center; backdrop-filter: blur(8px); }
+.cat { width: 108px; height: 88px; margin: 0 auto 18px; position: relative; }
+.cat-face { position:absolute; width:78px;height:62px;left:15px;top:19px;background:#fff;border:2px solid #e8dce1;border-radius:45% 45% 42% 42%;box-shadow:0 5px 0 #f6dce8; }
+.ear {position:absolute;top:8px;width:28px;height:32px;background:#fff;border:2px solid #e8dce1;transform:rotate(27deg);border-radius:5px 19px 4px 8px;}
+.ear.left{left:20px}.ear.right{right:20px;transform:rotate(63deg)}
+.eye{position:absolute;width:5px;height:8px;background:#44333a;border-radius:50%;top:43px}.eye.left{left:35px}.eye.right{right:35px}
+.nose{position:absolute;width:8px;height:6px;background:#efb64e;border-radius:50%;left:35px;top:53px}.whisk{position:absolute;width:17px;height:1px;background:#8b747c;top:55px}.whisk.l1{left:7px;transform:rotate(9deg)}.whisk.l2{left:7px;top:62px;transform:rotate(-9deg)}.whisk.r1{right:7px;transform:rotate(-9deg)}.whisk.r2{right:7px;top:62px;transform:rotate(9deg)}
+.bow{position:absolute;right:4px;top:2px;width:39px;height:26px;z-index:2}.bow:before,.bow:after{content:"";position:absolute;width:19px;height:20px;background:#f08bb5;border:2px solid #d96f9c}.bow:before{left:0;transform:rotate(28deg);border-radius:80% 25% 70% 30%}.bow:after{right:0;transform:rotate(-28deg);border-radius:25% 80% 30% 70%}.bow i{position:absolute;z-index:2;left:15px;top:8px;width:10px;height:10px;background:#ffd6e6;border:2px solid #d96f9c;border-radius:50%}
+h1,h2 { font-family:var(--site-font-heading); color: light-dark(#b94f7d,#ffb6d1); line-height:1.35; }
+h1 { font-size: calc(clamp(29px,7vw,45px) * var(--site-heading-scale)); margin: 5px 0 12px; }
+h2 { font-size: calc(clamp(24px,5vw,34px) * var(--site-heading-scale)); margin: 0 0 15px; }
+p { line-height:2; font-size: clamp(15px,3.6vw,18px); margin: 10px 0; }
+.sub { color: light-dark(#986b80,#e8bfd0); font-size:14px; }
+.envelope { width:160px;height:112px;margin:28px auto 24px;position:relative;cursor:pointer;filter:drop-shadow(0 10px 10px rgba(170,93,133,.17)); }
+.env-body {position:absolute;inset:18px 0 0;background:#f5a9c8;border-radius:8px 8px 13px 13px;overflow:hidden}
+.env-body:before,.env-body:after{content:"";position:absolute;bottom:0;width:0;height:0;border-style:solid}.env-body:before{left:0;border-width:0 80px 65px 0;border-color:transparent transparent #f8c5d8 transparent}.env-body:after{right:0;border-width:65px 80px 0 0;border-color:#f2b4ce transparent transparent transparent}
+.env-flap {position:absolute;top:18px;left:0;width:0;height:0;border-left:80px solid transparent;border-right:80px solid transparent;border-top:58px solid #e98db4;transform-origin:top;transition:transform .7s;z-index:3}
+.letter {position:absolute;left:18px;top:3px;width:124px;height:82px;background:#fffafd;border-radius:7px;z-index:2;transition:transform .8s;display:grid;place-items:center;color:#d46f9b;font-size:27px}
+.envelope.open .env-flap{transform:rotateX(180deg);z-index:0}.envelope.open .letter{transform:translateY(-58px)}
+button {border:0;border-radius:999px;padding:14px 24px;font:700 15px var(--site-font-body);cursor:pointer;transition:transform .2s,box-shadow .2s;}
+button:hover{transform:translateY(-2px)}button:focus-visible{outline:3px solid #a85d83;outline-offset:4px}
+.primary{background:var(--site-primary);color:var(--site-on-primary);box-shadow:0 7px 0 #df8fb0}.secondary{background:var(--site-secondary);color:var(--site-on-secondary)}.quiet{background:transparent;color:inherit;border:1px solid #e9b8ce}
+.actions{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:25px}
+.screen{display:none;animation:appear .55s ease both}.screen.active{display:block}@keyframes appear{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+.note {background:light-dark(#fff5fa,#493247);border:1px dashed #e8a9c5;border-radius:20px;padding:20px;margin:22px 0;text-align:left}
+.note p{font-size:16px}.signature{color:#c05b88;font-weight:bold;margin-top:14px}
+.progress{display:flex;justify-content:center;gap:7px;margin:0 0 20px}.dot{width:7px;height:7px;border-radius:50%;background:#efc5d8}.dot.on{background:#d76e9e;width:22px;border-radius:8px}
+.final-heart{font-size:58px;animation:beat 1.2s infinite;margin:14px}@keyframes beat{0%,100%{transform:scale(1)}50%{transform:scale(1.13)}}
+.footer{text-align:center;color:#bd8ca4;font-size:12px;margin-top:22px}
+@media(max-width:480px){main{width:calc(100% - 22px);padding:20px 0 35px}.card{padding:25px 19px}.actions button{width:100%}.note{padding:16px}}
+</style>
+</head>
+<body>
+<div id="app">
+  <div class="decor" aria-hidden="true"><span class="float">♡</span><span class="float">✿</span><span class="float">♡</span><span class="float">୨୧</span><span class="float">✧</span><span class="float">♡</span></div>
+  <main>
+    <div class="topline">KELMA S8IRA MEN 9ELBI · ୨୧</div>
+    <div class="progress" aria-label="T9addom dyal risala"><span class="dot on"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
+
+    <section class="screen active" id="s1">
+      <div class="card">
+        <div class="cat" aria-hidden="true"><div class="ear left"></div><div class="ear right"></div><div class="cat-face"><i class="eye left"></i><i class="eye right"></i><i class="nose"></i><i class="whisk l1"></i><i class="whisk l2"></i><i class="whisk r1"></i><i class="whisk r2"></i></div><div class="bow"><i></i></div></div>
+        <p class="sub">L aghla wa7da 3andi...</p>
+        <h1>l7biba dbabak 🎀</h1>
+        <p>Sawbt lik wahed l7aja sghira, w bghitk t7eliha fach tkouni wajda tsme3ini chwiya.</p>
+        <div class="envelope" id="envelope" role="button" tabindex="0" aria-label="7elli dderf"><div class="letter">♡</div><div class="env-body"></div><div class="env-flap"></div></div>
+        <button class="primary" id="openLetter">7elli risala dyalk</button>
+        <p class="sub">Khdi we9tek, ma kayn 7ta isti3jal.</p>
+      </div>
+    </section>
+
+    <section class="screen" id="s2">
+      <div class="card">
+        <div class="cat" aria-hidden="true"><div class="ear left"></div><div class="ear right"></div><div class="cat-face"><i class="eye left"></i><i class="eye right"></i><i class="nose"></i><i class="whisk l1"></i><i class="whisk l2"></i><i class="whisk r1"></i><i class="whisk r2"></i></div><div class="bow"><i></i></div></div>
+        <h2>Sm7i lia a 7bibti...</h2>
+        <div class="note">
+          <p>3aref belli 9l9tek obzef w ymken jre7t khatrek b chi tasarrof meni wsde9ini machi hadi hiya tari9a li bghitk t7essi biha m3aya mabghetkch thesi bli ana mashi meak ola ankhlik bohdek</p>
+          <p>Ma bghitch nberer rassi wla n9elleb lghalat 3lik. Bghit ghir ngolik belli ana mn ktr maderni khatri welit kanshufk tstahli mahsen meni w 3aref belli kelmet semhi lia bo7dha ma kafiyach</p>
+          <p>Nti bnisba liya dnya wmafiha bnisba liya lhayat loxgyne bash n9der n3ish bla bik wlh man9derch nkmel wlmasha3ir dyawlk kayhmoni obzef matb9aych tguli kanfr3lih raso ma bghitkch t7essi beli ana t9li9tk wmasha3rk wnti kamla makathminich rah kathmini ktr mn rasi rak lhbiba sghera dyali rah btabi3t l7al ankon as3ad wahed fdnya mli nsme3 lshnu tarilk wla nshufk katkhwi eliya masha3irk wbash kat7esi</p>
+          <p>Khdi lwe9t li me7taja, w ana mosta3ed nsme3 lik wnkon meak hit hadshu li gltlk nhar lwl ander w nfhem chno m9l9k otarilk la fdarkom la fzen9a la meaya w n7awel nsale7 dakchi li 9dert 3lih. Bghit nkoun sabab f btismtek machi f dm3tek</p>
+          <p class="signature">Sm7i lia, l7biba dbabak. ❤️</p>
+        </div>
+        <p class="sub">Machi ghir klam... ghadi n7awel nwerik hadchi b tasarrofati.</p>
+        <div class="actions"><button class="primary" data-next="s3">Kemli, ba9i 3andi ma ngol 💗</button></div>
+      </div>
+    </section>
+
+    <section class="screen" id="s3">
+      <div class="card">
+        <div class="cat" aria-hidden="true"><div class="ear left"></div><div class="ear right"></div><div class="cat-face"><i class="eye left"></i><i class="eye right"></i><i class="nose"></i><i class="whisk l1"></i><i class="whisk l2"></i><i class="whisk r1"></i><i class="whisk r2"></i></div><div class="bow"><i></i></div></div>
+        <h2>Bghit ghir t3erfi wa7d l7aja</h2>
+        <p>Machi darori tsal7ini f d9i9a, w ma ghadich ndghet elik bach tsame7ini daba</p>
+        <p>Ghir bghit ngulk bli ana n7awel rah msta3ed nhawel ela wdk walaw mlyun mera wkter, wana rah dima meak wlh wemri ankhlik bohdek wrah kan elik hir tji endi yak ana babak tji endi tguli baba ha bach kanhes wlh man9der nkhlik bohdek dd shnu kathesi, wana wlh ma n3awed nafs l7aja li 9el9atek.</p>
+        <div class="note" style="text-align:center"><p>T9li9tek 3endha 9ima, w ra7tek mohima endi. 7ta ila kenti me7taja chwia dyal lwe9t, ana ghadi ne7tarem hadchi.</p></div>
+        <div class="actions"><button class="primary" data-next="s4">3andi so2al sghir lik 🥺</button></div>
+      </div>
+    </section>
+
+    <section class="screen" id="s4">
+      <div class="card">
+        <div class="cat" aria-hidden="true"><div class="ear left"></div><div class="ear right"></div><div class="cat-face"><i class="eye left"></i><i class="eye right"></i><i class="nose"></i><i class="whisk l1"></i><i class="whisk l2"></i><i class="whisk r1"></i><i class="whisk r2"></i></div><div class="bow"><i></i></div></div>
+        <p class="sub">Akher 7aja bghit ngol lik...</p>
+        <h2>Wash ba9a katbgheni ?</h2>
+        <div class="actions"><button class="primary" id="yesBtn">Ah🥹❤️</button><button class="quiet" id="laterBtn">La💔</button></div>
+        <p class="sub" id="answer" aria-live="polite" style="min-height:45px;margin-top:20px"></p>
+      </div>
+    </section>
+    <div class="footer">Sawbha lik wa7ed baghi ychofek fer7ana · O ♡ M</div>
+  </main>
+</div>
+<script>
+const screens=[...document.querySelectorAll('.screen')];
+const dots=[...document.querySelectorAll('.dot')];
+function show(id){screens.forEach(s=>s.classList.toggle('active',s.id===id));const n=Number(id.slice(1))-1;dots.forEach((d,i)=>d.classList.toggle('on',i===n));window.scrollTo({top:0,behavior:'smooth'});}
+const envelope=document.getElementById('envelope');
+function open(){envelope.classList.add('open');document.getElementById('openLetter').disabled=true;setTimeout(()=>show('s2'),850);}
+document.getElementById('openLetter').addEventListener('click',open);
+envelope.addEventListener('click',open);envelope.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();open();}});
+document.querySelectorAll('[data-next]').forEach(b=>b.addEventListener('click',()=>show(b.dataset.next)));
+document.getElementById('yesBtn').addEventListener('click',()=>{document.getElementById('answer').innerHTML='<div class="final-heart">🥹❤️</div><strong>Ah, ba9i kanbghik...</strong><br>W ana ghadi n7awel nberhen lik b af3ali belli 7obbi lik sadi9.';});
+document.getElementById('laterBtn').addEventListener('click',()=>{document.getElementById('answer').textContent='Kanfehmek, w ghadi ne7tarem jawabek w lwe9t dyalek. ♡';});
+</script>
+</body>
+</html>
